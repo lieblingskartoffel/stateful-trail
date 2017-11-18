@@ -3,6 +3,7 @@ import logo from './images/logo2.png';
 import './App.css';
 import Map from './components/Map';
 import PartyStatus from './components/PartyStatus';
+import StartForm from './components/StartForm';
 
 class App extends Component {
   render() {
@@ -13,12 +14,13 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Stateful Trail</h1>
           </header>
-          <p className="party-sidebar">
+          <div className="party-sidebar">
             <PartyStatus />
-          </p>
+          </div>
         </div>
         <div className="main-content">
           <Map />
+          <StartForm />
         </div>
       </div>
     );

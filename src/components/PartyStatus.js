@@ -35,7 +35,7 @@ class PartyStatus extends Component {
     return (
       this.partyMembers().map((member) => {
         let text = member.name + ', ' + member.age;
-        return (<div>{text}</div>)
+        return (<div key={member.name}>{text}</div>)
       })
     );
   }

@@ -1,39 +1,16 @@
 import React, { Component } from 'react';
 
 class PartyStatus extends Component {
-  partyMembers() {
-    return (
-      [
-        {
-          name: 'Caroline',
-          age: 24,
-        },
-        {
-          name: 'Josh',
-          age: 24,
-        },
-        {
-          name: 'Tyler',
-          age: 24,
-        },
-        {
-          name: 'Indu',
-          age: 24,
-        },
-        {
-          name: 'Harvey',
-          age: 34,
-        },
-        {
-          name: 'Ben',
-          age: 26,
-        },
-      ]
-    );
+  constructor(props) {
+    super(props);
+    this.state = {
+      members: this.props.members
+    };
   }
+
   renderPartyList() {
     return (
-      this.partyMembers().map((member) => {
+      this.state.members.map((member) => {
         let text = member.name + ', ' + member.age;
         return (<div key={member.name}>{text}</div>)
       })

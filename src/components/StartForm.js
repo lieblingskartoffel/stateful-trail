@@ -4,51 +4,23 @@ class StartForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			members: [
-				{
-					name: '',
-					age: null,
-				},
-				{
-					name: '',
-					age: null,
-				},
-				{
-					name: '',
-					age: null,
-				},
-				{
-					name: '',
-					age: null,
-				},
-				{
-					name: '',
-					age: null,
-				},
-				{
-					name: '',
-					age: null,
-				},
-			]
+			members: this.props.members
 		};
 
 		this.handleNameChange = this.handleNameChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	renderRow(id) {
+	renderRow(member) {
 		return (
-			<div key={id} className="start-form-row">
-				<input type="text" id={id} value={this.state.members[id].name} onChange={this.handleNameChange} />
+			<div key={member.id} className="start-form-row">
+				<input type="text" id={member.id} value={member.name} onChange={this.props.handleNameChange} />
 			</div>
 		);
 	}
 
-
-	handleNameChange(event, f, z) {
-		let copiedState = Object.assign({}, this.state);
-		copiedState.members[event.target.id].name = event.target.value;
-		this.setState(copiedState);
+	handleNameChange(event) {
+		this.props.handleNameChange(event);
 	}
 
 	handleSubmit(event) {
@@ -64,7 +36,7 @@ class StartForm extends React.Component {
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<label>
-					{this.getPartySkeleton().map((id) => {return this.renderRow(id)})}
+					{this.props.members.map((member) => {return this.renderRow(member)})}
 				</label>
 				<input type="submit" value="Submit" />
 			</form>

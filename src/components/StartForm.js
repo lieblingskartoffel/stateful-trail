@@ -24,21 +24,18 @@ class StartForm extends React.Component {
 	}
 
 	handleSubmit(event) {
-		alert('something happened and its value was ' + this.state.members.map((member) => {return member.name}));
+		this.props.startGame();
 		event.preventDefault();
-	}
-
-	getPartySkeleton() {
-		return [0,1,2,3,4,5];
 	}
 
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit}>
 				<label>
+				Enter the names of your party members!
 					{this.props.members.map((member) => {return this.renderRow(member)})}
 				</label>
-				<input type="submit" value="Submit" />
+				<input type="submit" value="Start Game" />
 			</form>
 		)
 	}

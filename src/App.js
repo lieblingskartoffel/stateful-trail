@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import logo from './images/logo2.png';
 import './App.css';
-import Map from './components/Map';
 import PartyStatus from './components/PartyStatus';
-import StartForm from './components/StartForm';
+import MainPanel from './components/MainPanel';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isStarted: false,
       members: [
         {
           name: 'Caroline',
@@ -44,11 +44,18 @@ class App extends Component {
     };
 
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.startGame = this.startGame.bind(this);
   }
 
   handleNameChange(event) {
     let copiedState = Object.assign({}, this.state);
     copiedState.members[event.target.id].name = event.target.value;
+    this.setState(copiedState);
+  }
+
+  startGame() {
+    let copiedState = Object.assign({}, this.state);
+    copiedState.isStarted = true;
     this.setState(copiedState);
   }
 
@@ -64,10 +71,7 @@ class App extends Component {
             <PartyStatus members={this.state.members}/>
           </div>
         </div>
-        <div className="main-content">
-          <Map />
-          <StartForm members={this.state.members} handleNameChange={this.handleNameChange}/>
-        </div>
+        <MainPanel members={this.state.members} handleNameChange={this.handleNameChange} isStarted={this.state.isStarted} startGame={this.startGame} />
       </div>
     );
   }
